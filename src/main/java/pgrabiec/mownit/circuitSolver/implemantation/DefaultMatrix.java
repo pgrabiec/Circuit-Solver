@@ -1,6 +1,6 @@
-package mownit.lab2.gauss.implemantation;
+package pgrabiec.mownit.circuitSolver.implemantation;
 
-import mownit.lab2.gauss.Matrix;
+import pgrabiec.mownit.circuitSolver.Matrix;
 
 public class DefaultMatrix implements Matrix {
     /** matrix[row][column] */

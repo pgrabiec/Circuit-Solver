@@ -1,11 +1,11 @@
-package mownit.lab2.gauss;
+package pgrabiec.mownit.circuitSolver;
 
-import mownit.lab2.gauss.graph.CurrentComputation;
-import mownit.lab2.gauss.graph.io.EdgesInput;
-import mownit.lab2.gauss.graph.processing.GraphBuilder;
-import mownit.lab2.gauss.graph.processing.GraphVisualizer;
-import mownit.lab2.gauss.implemantation.DefaultSystemMatrix;
-import mownit.lab2.gauss.implemantation.Solver;
+import pgrabiec.mownit.circuitSolver.graph.CurrentComputation;
+import pgrabiec.mownit.circuitSolver.graph.io.EdgesInput;
+import pgrabiec.mownit.circuitSolver.graph.processing.GraphBuilder;
+import pgrabiec.mownit.circuitSolver.graph.processing.GraphVisualizer;
+import pgrabiec.mownit.circuitSolver.implemantation.DefaultSystemMatrix;
+import pgrabiec.mownit.circuitSolver.implemantation.Solver;
 import org.graphstream.graph.Graph;
 
 import java.io.BufferedWriter;
@@ -24,7 +24,7 @@ public class Main {
                     )
             );
 
-            //GraphVisualizer.initAndDisplayGraph(graph);
+            GraphVisualizer.initAndDisplayGraph(graph);
 
             CurrentComputation.computeCurrent(graph);
 

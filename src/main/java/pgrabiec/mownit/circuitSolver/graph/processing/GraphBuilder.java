@@ -1,7 +1,7 @@
-package mownit.lab2.gauss.graph.processing;
+package pgrabiec.mownit.circuitSolver.graph.processing;
 
-import mownit.lab2.gauss.graph.CircuitEdge;
-import mownit.lab2.gauss.graph.Const;
+import pgrabiec.mownit.circuitSolver.graph.CircuitEdge;
+import pgrabiec.mownit.circuitSolver.graph.Const;
 import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;

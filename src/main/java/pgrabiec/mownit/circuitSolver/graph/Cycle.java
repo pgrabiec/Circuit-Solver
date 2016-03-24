@@ -1,4 +1,4 @@
-package mownit.lab2.gauss.graph;
+package pgrabiec.mownit.circuitSolver.graph;
 
 import org.graphstream.graph.Node;
 

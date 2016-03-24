@@ -1,4 +1,4 @@
-package mownit.lab2.gauss.graph;
+package pgrabiec.mownit.circuitSolver.graph;
 
 
 public class CircuitEdge {

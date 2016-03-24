@@ -1,8 +1,8 @@
-package mownit.lab2.gauss.graph;
+package pgrabiec.mownit.circuitSolver.graph;
 
-import mownit.lab2.gauss.graph.processing.CycleFinder;
-import mownit.lab2.gauss.implemantation.DefaultSystemMatrix;
-import mownit.lab2.gauss.implemantation.Solver;
+import pgrabiec.mownit.circuitSolver.graph.processing.CycleFinder;
+import pgrabiec.mownit.circuitSolver.implemantation.DefaultSystemMatrix;
+import pgrabiec.mownit.circuitSolver.implemantation.Solver;
 import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;

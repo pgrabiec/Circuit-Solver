@@ -1,4 +1,4 @@
-package mownit.lab2.gauss;
+package pgrabiec.mownit.circuitSolver;
 
 public interface LinearSystemSolver {
 

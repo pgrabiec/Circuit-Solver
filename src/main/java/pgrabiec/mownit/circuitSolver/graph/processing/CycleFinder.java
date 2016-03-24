@@ -1,6 +1,6 @@
-package mownit.lab2.gauss.graph.processing;
+package pgrabiec.mownit.circuitSolver.graph.processing;
 
-import mownit.lab2.gauss.graph.Cycle;
+import pgrabiec.mownit.circuitSolver.graph.Cycle;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 
@@ -49,9 +49,6 @@ public class CycleFinder {
                     if (visitedStack.size() >= 3) {
                         if (neighbour != visitedStack.get(visitedStack.size() - 2)) {
                             visitedStack.push(neighbour);
-
-                            System.out.println("NEIGHBOUR: " + neighbour + " CYCLE: " + visitedStack);
-
                             extractCycle(visitedStack, cycles);
                             visitedStack.pop();
                         }
@@ -69,10 +66,6 @@ public class CycleFinder {
                 visited[currentNode.getIndex()] = false;
                 visitedStack.pop();
             }
-        }
-
-        for (Cycle c : cycles) {
-            System.out.println("CYCLE NODES: " + Arrays.toString(c.nodes));
         }
 
         return cycles;

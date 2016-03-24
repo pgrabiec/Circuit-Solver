@@ -1,6 +1,6 @@
-package mownit.lab2.gauss.implemantation;
+package pgrabiec.mownit.circuitSolver.implemantation;
 
-import mownit.lab2.gauss.LinearSystemMatrix;
+import pgrabiec.mownit.circuitSolver.LinearSystemMatrix;
 
 public class DefaultSystemMatrix extends DefaultMatrix implements LinearSystemMatrix {
     private final double[] values;

@@ -1,6 +1,6 @@
-package mownit.lab2.gauss.graph.io;
+package pgrabiec.mownit.circuitSolver.graph.io;
 
-import mownit.lab2.gauss.graph.CircuitEdge;
+import pgrabiec.mownit.circuitSolver.graph.CircuitEdge;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
