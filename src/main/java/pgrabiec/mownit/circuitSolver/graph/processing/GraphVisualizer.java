@@ -23,17 +23,18 @@ public class GraphVisualizer {
             String label = "";
 
             if (e.hasAttribute(Const.RESISTANCE_ATTRIBUTE)) {
-                label += e.getAttribute(Const.RESISTANCE_ATTRIBUTE) + "[Ohm]";
+                label += round((Double) e.getAttribute(Const.RESISTANCE_ATTRIBUTE), 1) + "[Ohm] ";
             }
 
             if (e.hasAttribute(Const.VOLTAGE_ATTRIBUTE)) {
-                label += " " + e.getAttribute(Const.VOLTAGE_ATTRIBUTE) + " [V]";
+                label += round((Double) e.getAttribute(Const.VOLTAGE_ATTRIBUTE), 1) + " [V] ";
             }
 
             if (e.hasAttribute(Const.CURRENT_ATTRIBUTE)) {
                 double current = e.getAttribute(Const.CURRENT_ATTRIBUTE);
                 double absCurrent = Math.abs(current);
-                label += " " + current + " [A]";
+
+                label += round(current, 3) + " [A]";
 
                 if (absCurrent > maxCurrent) {
                     maxCurrent = absCurrent;
@@ -84,11 +85,11 @@ public class GraphVisualizer {
 
             int redValue = getValueScaled(0, 255, current, 0.0, maxCurrent);
             int edgeWidth = getValueScaled(Const.MIN_EDGE_WIDTH,
-                    Const.MAX_EDGE_WIDTH, current, minCurrent, maxCurrent);
+                    Const.MAX_EDGE_WIDTH, current, 0.0, maxCurrent);
             int arrowWidth = getValueScaled(Const.MIN_ARROW_WIDTH,
-                    Const.MAX_ARROW_WIDTH, current, minCurrent, maxCurrent);
+                    Const.MAX_ARROW_WIDTH, current, 0.0, maxCurrent);
             int arrowLength = getValueScaled(Const.MIN_ARROW_LENGTH,
-                    Const.MAX_ARROW_LENGTH, current, minCurrent, maxCurrent);
+                    Const.MAX_ARROW_LENGTH, current, 0.0, maxCurrent);
 
             attributes.append("edge#\"" + e.getId() + "\" {\n")
                     .append("fill-color: rgb(" + redValue + ",0,0);\n")
@@ -98,7 +99,6 @@ public class GraphVisualizer {
                     .append("}\n")
             ;
 
-            System.out.println("ID:" + e.getId() + "\tCURRENT: " + current + "\tmin:" + minCurrent + "\tmax:" + maxCurrent + "\tRED:" + redValue + "\tWIDTH: " + edgeWidth + "\tARROW:" + arrowWidth);
         }
         graph.addAttribute("ui.stylesheet", attributes.toString());
     }
@@ -148,8 +148,8 @@ public class GraphVisualizer {
 
         Node from_node, to_node;
 
-        from_node = edge.getTargetNode();
-        to_node = edge.getSourceNode();
+        from_node = edge.getSourceNode();
+        to_node = edge.getTargetNode();
 
         boolean currentPositive = (Double) edge.getAttribute(Const.CURRENT_ATTRIBUTE) > 0.0;
         int from_id = Integer.parseInt(from_node.getId());
@@ -161,7 +161,7 @@ public class GraphVisualizer {
                 from_node = to_node;
                 to_node = tmp;
             }
-        } else if (currentPositive) {
+        } else if (!currentPositive) {
             Node tmp = from_node;
             from_node = to_node;
             to_node = tmp;
@@ -172,5 +172,12 @@ public class GraphVisualizer {
         for (String attrKey : edge.getAttributeKeySet()) {
             newEdge.addAttribute(attrKey, edge.getAttribute(attrKey));
         }
+
+        //System.out.println("FROM: " + from_node.getId() + " TO: " + to_node.getId() + " CURRENT: " + edge.getAttribute(Const.CURRENT_ATTRIBUTE));
+    }
+
+    private static Double round(double value, int places) {
+        double factor = Math.pow(10.0, places);
+        return Math.floor(value * factor) / factor;
     }
 }

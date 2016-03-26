@@ -13,6 +13,11 @@ public class Cycle {
         this.nodes = nodes;
     }
 
+    /**
+     * @return  <code>true</code> if the <param>anotherCycle</param>
+     *          consists of the same nodes as this cycle
+     *          <code>false</code> otherwise
+     * */
     public boolean equals(Object anotherCycle) {
         if (anotherCycle == this) {
             return true;

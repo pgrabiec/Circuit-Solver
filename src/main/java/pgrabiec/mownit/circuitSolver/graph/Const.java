@@ -1,5 +1,9 @@
 package pgrabiec.mownit.circuitSolver.graph;
 
+/**
+ * Provides constant parameters values for the graph visualisation
+ * */
+
 public class Const {
     public static final String VOLTAGE_ATTRIBUTE = "voltage";
     public static final String RESISTANCE_ATTRIBUTE = "resistance";

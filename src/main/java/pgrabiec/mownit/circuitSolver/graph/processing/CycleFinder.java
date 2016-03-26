@@ -1,8 +1,8 @@
 package pgrabiec.mownit.circuitSolver.graph.processing;
 
-import pgrabiec.mownit.circuitSolver.graph.Cycle;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
+import pgrabiec.mownit.circuitSolver.graph.Cycle;
 
 import java.util.*;
 

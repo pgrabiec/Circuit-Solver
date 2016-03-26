@@ -1,7 +1,6 @@
 package pgrabiec.mownit.circuitSolver;
 
 public interface LinearSystemSolver {
-
     /**
      * Solves linear system by setting values vector of <param>systemMatrix</param>
      * as if it's main matrix represented an identity matrix
@@ -19,5 +18,5 @@ public interface LinearSystemSolver {
      *
      * Such that A = L * U
      * */
-    void LUDecompose(double[][] A, Matrix L, Matrix U);
+    void luDecompose(double[][] A, Matrix L, Matrix U);
 }

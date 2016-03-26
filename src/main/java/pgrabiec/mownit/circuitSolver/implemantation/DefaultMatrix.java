@@ -5,8 +5,10 @@ import pgrabiec.mownit.circuitSolver.Matrix;
 public class DefaultMatrix implements Matrix {
     /** matrix[row][column] */
     protected final double[][] matrix;
+
     /** size of a row */
     protected final int width;
+
     /** size of a column */
     protected final int height;
 
@@ -70,21 +72,9 @@ public class DefaultMatrix implements Matrix {
         }
     }
 
-    public void substractRow(int row, double value) {
-        for (int i = 0; i< width; i++) {
-            matrix[row][i] -= value;
-        }
-    }
-
-    public void addRow(int row, double value) {
-        for (int i = 0; i< width; i++) {
-            matrix[row][i] += value;
-        }
-    }
-
-    public void substractRowByAnother(int rowToBeSubstracted, int substractionValuesRow, double multiplicant) {
+    public void subtractRowByAnother(int rowToBeSubtracted, int subtractionValuesRow, double multiplier) {
         for (int column = 0; column< width; column++) {
-            matrix[rowToBeSubstracted][column] -= matrix[substractionValuesRow][column] * multiplicant;
+            matrix[rowToBeSubtracted][column] -= matrix[subtractionValuesRow][column] * multiplier;
         }
     }
 
@@ -159,6 +149,31 @@ public class DefaultMatrix implements Matrix {
         }
     }
 
+    public boolean removeZeroFromDiagonal(int rowAndColumn) {
+        if (matrix[rowAndColumn][rowAndColumn] != 0.0) {
+            return true;
+        }
+
+        for (int row = height-1; row > rowAndColumn; row--) {
+            if (matrix[row][rowAndColumn] != 0.0) {
+                swapRows(row, rowAndColumn);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void print() {
+        for (int row = 0; row< width; row++) {
+            for (int column = 0; column< width; column++) {
+                System.out.print(matrix[row][column] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+
     private void rememberSwapping(int column1, int column2) {
         int varTmp = variableAssociation[column1];
         variableAssociation[column1] = variableAssociation[column2];
@@ -173,66 +188,5 @@ public class DefaultMatrix implements Matrix {
         }
 
         throw new IllegalArgumentException("cannot acquire column association for variable id " + variableId + " and width " + width);
-    }
-
-    public void print() {
-        for (int row = 0; row< width; row++) {
-            for (int column = 0; column< width; column++) {
-                System.out.print(matrix[row][column] + " ");
-            }
-            System.out.println();
-        }
-    }
-
-    public void multiply(Matrix m1, Matrix m2, Matrix result) {
-        if (m1.getWidth() != m2.getHeight()) {
-            throw new IllegalArgumentException("Cannot multiply matrices: width1=" +
-                    m1.getWidth() + " height2=" + m2.getHeight());
-        }
-        if (result.getWidth() != m2.getWidth() || result.getHeight() != m1.getHeight()) {
-            throw new IllegalArgumentException("multiplication result matrix size mismatch.\n" +
-                    "Expected: width=" + m1.getWidth() + " height=" + m2.getHeight() + "\n" +
-                    "Actual: width=" + result.getWidth() + " height=" + result.getHeight());
-        }
-
-        for (int row = 0; row< width; row++) {
-            for (int column = 0; column< width; column++) {
-                double sum = 0.0;
-
-                for (int i = 0; i< width; i++) {
-                    sum += m1.getMatrixValue(row, i) * m2.getMatrixValue(i, column);
-                }
-
-                result.setMatrixValue(row, column, sum);
-            }
-        }
-    }
-
-    /**
-     * If there is a zero value in the diagonal of specified row and column,
-     * The row containing the diagonal field is swapped with another one
-     * that has non-zero value in the same column and the row is greater than
-     * the diagonal row - meant for enabling Gaussian elimination if zero occurs
-     * on the main diagonal.
-     *
-     * @return  true    if either the diagonal was made non-zero valued by swapping
-     *                  two different rows or the value on the diagonal was already
-     *                  non-zero valued
-     *          false   if there is no row with greater index having non-zero value
-     *                  that the diagonal can be swapped with.
-     * */
-    public boolean removeZeroFromDiagonal(int rowAndColumn) {
-        if (matrix[rowAndColumn][rowAndColumn] != 0.0) {
-            return true;
-        }
-
-        for (int row = height-1; row > rowAndColumn; row--) {
-            if (matrix[row][rowAndColumn] != 0.0) {
-                swapRows(row, rowAndColumn);
-                return true;
-            }
-        }
-
-        return false;
     }
 }

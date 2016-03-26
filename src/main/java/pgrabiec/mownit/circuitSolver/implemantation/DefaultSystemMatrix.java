@@ -3,7 +3,7 @@ package pgrabiec.mownit.circuitSolver.implemantation;
 import pgrabiec.mownit.circuitSolver.LinearSystemMatrix;
 
 public class DefaultSystemMatrix extends DefaultMatrix implements LinearSystemMatrix {
-    private final double[] values;
+    protected final double[] values;
 
     public DefaultSystemMatrix(double[][] matrix, double[] values) {
         super(matrix);
@@ -35,22 +35,11 @@ public class DefaultSystemMatrix extends DefaultMatrix implements LinearSystemMa
         values[row] /= value;
     }
 
-    public void substractRow(int row, double value) {
-        super.substractRow(row, value);
-        values[row] -= value;
+    public void subtractRowByAnother(int rowToBeSubtracted, int subtractionValuesRow, double multiplier) {
+        super.subtractRowByAnother(rowToBeSubtracted, subtractionValuesRow, multiplier);
+
+        values[rowToBeSubtracted] -= values[subtractionValuesRow] * multiplier;
     }
-
-    public void addRow(int row, double value) {
-        super.addRow(row, value);
-        values[row] += value;
-    }
-
-    public void substractRowByAnother(int rowToBeSubstracted, int substractionValuesRow, double multiplicant) {
-        super.substractRowByAnother(rowToBeSubstracted, substractionValuesRow, multiplicant);
-
-        values[rowToBeSubstracted] -= values[substractionValuesRow] * multiplicant;
-    }
-
 
     public void setVectorValue(int row, double value) {
         values[row] = value;
@@ -73,7 +62,6 @@ public class DefaultSystemMatrix extends DefaultMatrix implements LinearSystemMa
             }
         }
     }
-
 
     private void swapVectorValues(int row, int row2) {
         double tmp = values[row];
