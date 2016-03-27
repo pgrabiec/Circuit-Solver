@@ -45,10 +45,10 @@ public class DefaultSolver implements LinearSystemSolver {
 
                 for (int row = column + 1; row < height; row++) {
                     if (matrix.getMatrixValue(row, column) != 0.0) {
-                        double multiplicant = matrix.getMatrixValue(row, column)
+                        double multiplier = matrix.getMatrixValue(row, column)
                                 / matrix.getMatrixValue(column, column);
 
-                        matrix.subtractRowByAnother(row, column, multiplicant);
+                        matrix.subtractRowByAnother(row, column, multiplier);
                         matrix.setMatrixValue(row, column, 0.0);
                     }
                 }
@@ -117,13 +117,13 @@ public class DefaultSolver implements LinearSystemSolver {
 
                 for (int row = column + 1; row < size; row++) {
 
-                    double multiplicant =
+                    double multiplier =
                             u.getMatrixValue(row, column)
                             / u.getMatrixValue(column, column);
 
-                    u.subtractRowByAnother(row, column, multiplicant);
+                    u.subtractRowByAnother(row, column, multiplier);
                     u.setMatrixValue(row, column, 0);
-                    l.setMatrixValue(row, column, multiplicant);
+                    l.setMatrixValue(row, column, multiplier);
                 }
 
             }
